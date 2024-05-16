@@ -1,9 +1,7 @@
 package Swing;
 
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class NodeMouseListener extends MouseAdapter {
     boolean write = false;
@@ -23,7 +21,24 @@ public class NodeMouseListener extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         PRESSED = true;
         if (write){
-            node.changeState(StateManager.getState());
+            int state = node.changeState();
+            System.out.println("press->" + state);
+            if (state == StaticManager.START){
+                StaticManager.onHasStart();
+                System.out.println("    NODE_MOUSE_LISTENER--->onHasStart()");
+                System.out.println("        STATIC_MANAGER--->onHasStart=" + StaticManager.MAP_PANEL_DIR_ACCESS_HAS_START());
+            }
+            if (state == StaticManager.END){
+                StaticManager.onHasEnd();
+                System.out.println("    NODE_MOUSE_LISTENER--->onHasEnd()");
+                System.out.println("        STATIC_MANAGER--->onHasEnd=" + StaticManager.MAP_PANEL_DIR_ACCESS_HAS_END());
+            }
+
+
+            if (StaticManager.MAP_PANEL_DIR_ACCESS_HAS_START() && StaticManager.MAP_PANEL_DIR_ACCESS_HAS_END()){
+                StaticManager.step();
+                System.out.println("success!");
+            }
         }
     }
 
@@ -36,7 +51,7 @@ public class NodeMouseListener extends MouseAdapter {
     public void mouseEntered(MouseEvent e) {
         write = true;
         if (PRESSED){
-            node.changeState(StateManager.getState());
+            node.changeState();
         }
     }
 

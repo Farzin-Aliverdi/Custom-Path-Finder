@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Node extends JLabel {
     int x, y;
-    int state = StateManager.getState();
+    int state = StaticManager.getState();
 
     public Node(String name, int alignment){
         super(name, alignment);
@@ -17,25 +17,29 @@ public class Node extends JLabel {
         //setText("[" + x + ", " + y + "]");
 
         setOpaque(true);
-        setBackground(StateManager.DEFAULT_COLOR);
+        setBackground(StaticManager.DEFAULT_COLOR);
+        setBorder(BorderFactory.createLineBorder(StaticManager.NODE_BORDER_COLOR));
     }
 
-    public void changeState(int state){
-        this.state = state;
+    public int changeState(){
+        this.state = StaticManager.getState();
         if (state == 0){
-            setBackground(StateManager.START_COLOR);
+            setBackground(StaticManager.START_COLOR);
         }else if (state == 1){
-            setBackground(StateManager.END_COLOR);
+            setBackground(StaticManager.END_COLOR);
         }else if (state == 2){
-            setBackground(StateManager.WALL_COLOR);
+            setBackground(StaticManager.WALL_COLOR);
         }else if (state == 3){
-            setBackground(StateManager.ERASE_COLOR);
+            setBackground(StaticManager.ERASE_COLOR);
         }else {
-            setBackground(StateManager.DEFAULT_COLOR);
+            setBackground(StaticManager.DEFAULT_COLOR);
         }
+        return this.state;
     }
 
     public void reset(){
-        setBackground(StateManager.DEFAULT_COLOR);
+        setBackground(StaticManager.DEFAULT_COLOR);
     }
+
+
 }

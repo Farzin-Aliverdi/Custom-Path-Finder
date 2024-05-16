@@ -17,11 +17,10 @@ public class MainFrame extends JFrame {
     //Variables
     MapPanel mapPanel = null;
     MenuPanel menuPanel = null;
-    static StateManager stateManager = null;
 
     public void initialize(){
         setLayout(new BorderLayout());
-        setSize(StateManager.MAX_LENGTH, StateManager.MAX_HEIGHT);
+        setSize(StaticManager.MAX_LENGTH, StaticManager.MAX_HEIGHT);
         setVisible(true);
 
         //NORTH - MENU
@@ -34,16 +33,19 @@ public class MainFrame extends JFrame {
         mapPanel.initialize();
         add(mapPanel, BorderLayout.CENTER);
 
-        //DRAW STATE MANAGER
-        stateManager = new StateManager(menuPanel, mapPanel);
+        StaticManager.staticManager(menuPanel, mapPanel);
 
-        setSize(StateManager.MAX_LENGTH + 10, StateManager.MAX_HEIGHT + 10);
+        setSize(StaticManager.MAX_LENGTH + 10, StaticManager.MAX_HEIGHT + 10);
     }
 
     public void run(){
         while (true){
+            mapPanel.run();
             mapPanel.repaint();
+
+            menuPanel.run();
             menuPanel.repaint();
+
             repaint();
         }
     }

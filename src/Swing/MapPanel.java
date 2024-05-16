@@ -1,49 +1,59 @@
 package Swing;
 
+import Structures.Map;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 
-public class MapPanel extends JPanel {
-    int mapSize = StateManager.MAP_SIZE;
-    Node[][] map;
+public class MapPanel extends JPanel implements Runnable{
+    Map map;
 
     public void initialize(){
-        map = new Node[mapSize][mapSize];
+        map = new Map(this);
+        map.generate();
+        setLayout(new GridLayout(StaticManager.MAP_SIZE, StaticManager.MAP_SIZE));
+    }
 
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                Node node = new Node(null, JLabel.CENTER);
-                node.initialize(i + 1, j + 1);
-                NodeMouseListener nodeMouseListener = new NodeMouseListener();
-                nodeMouseListener.initialize(node);
-                node.addMouseListener(nodeMouseListener);
+    @Override
+    public void run() {
+        //map.takeStep();
+    }
 
-                map[i][j] = node;
-                add(node);
-            }
-        }
+    public void takeStep(){
+        map.takeStep();
+    }
 
-        setLayout(new GridLayout(mapSize, mapSize));
+    public boolean getHasStart(){
+        return map.getHasStart();
+    }
+    public boolean getHasEnd(){
+        return map.getHasEnd();
     }
 
     @Override
     public void repaint() {
         super.repaint();
 
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                map[i][j].repaint();
+        for (int i = 0; i < StaticManager.MAP_SIZE; i++) {
+            for (int j = 0; j < StaticManager.MAP_SIZE; j++) {
+                //map[i][j].repaint();
             }
         }
     }
 
     void eraseAll(){
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                map[i][j].reset();
-            }
+        map.eraseAll();
+    }
+
+    void onHasStart(){
+        if (!map.getHasStart()){
+            map.tickHasStart();
+        }
+    }
+
+    void onHasEnd(){
+        if (!map.getHasEnd()){
+            map.tickHasEnd();
         }
     }
 }

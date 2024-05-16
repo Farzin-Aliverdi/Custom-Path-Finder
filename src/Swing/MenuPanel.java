@@ -13,7 +13,7 @@ public class MenuPanel extends JPanel implements Runnable {
 
     public void initialize(){
         setBackground(backgroundCol);
-        setPreferredSize(new Dimension(StateManager.MAX_LENGTH, (int)(StateManager.MAX_HEIGHT * MAX_HEIGHT_SCALE)));
+        setPreferredSize(new Dimension(StaticManager.MAX_LENGTH, (int)(StaticManager.MAX_HEIGHT * MAX_HEIGHT_SCALE)));
 
         addButtons();
 
@@ -22,7 +22,7 @@ public class MenuPanel extends JPanel implements Runnable {
 
     @Override
     public void run(){
-        int currentState = StateManager.getState();
+        int currentState = StaticManager.getState();
         if (currentState == 0){
             startButton.run();
             endButton.reset();
@@ -39,7 +39,7 @@ public class MenuPanel extends JPanel implements Runnable {
     }
 
     private void addButtons(){
-        Dimension dimension = new Dimension((int)(StateManager.MAX_LENGTH * (1.0 / NUM_OF_BUTTON)), (int)(StateManager.MAX_HEIGHT * MAX_HEIGHT_SCALE));
+        Dimension dimension = new Dimension((int)(StaticManager.MAX_LENGTH * (1.0 / NUM_OF_BUTTON)), (int)(StaticManager.MAX_HEIGHT * MAX_HEIGHT_SCALE));
 
         startButton = new MenuButton("Start", JLabel.CENTER);
         endButton = new MenuButton("End", JLabel.CENTER);
@@ -47,11 +47,11 @@ public class MenuPanel extends JPanel implements Runnable {
         eraseButton = new MenuButton("Erase", JLabel.CENTER);
         eraseAllButton = new MenuButton("Erase All", JLabel.CENTER);
 
-        startButton.initialize(dimension, new MenuButtonListener(startButton, StateManager.START));
-        endButton.initialize(dimension, new MenuButtonListener(endButton, StateManager.END));
-        wallButton.initialize(dimension, new MenuButtonListener(wallButton, StateManager.WALL));
-        eraseButton.initialize(dimension, new MenuButtonListener(eraseButton, StateManager.ERASE));
-        eraseAllButton.initialize(dimension, new MenuButtonListener(eraseAllButton, StateManager.ERASE_ALL));
+        startButton.initialize(dimension, new MenuButtonListener(startButton, StaticManager.START));
+        endButton.initialize(dimension, new MenuButtonListener(endButton, StaticManager.END));
+        wallButton.initialize(dimension, new MenuButtonListener(wallButton, StaticManager.WALL));
+        eraseButton.initialize(dimension, new MenuButtonListener(eraseButton, StaticManager.ERASE));
+        eraseAllButton.initialize(dimension, new MenuButtonListener(eraseAllButton, StaticManager.ERASE_ALL));
 
         add(startButton);
         add(endButton);

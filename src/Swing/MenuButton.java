@@ -11,9 +11,10 @@ public class MenuButton extends JLabel implements Runnable{
     }
 
     public void initialize(Dimension dimension, MenuButtonListener menuButtonListener) {
+        this.menuButtonListener = menuButtonListener;
         setOpaque(true);
         setPreferredSize(dimension);
-        addMouseListener(menuButtonListener);
+        addMouseListener(this.menuButtonListener);
     }
 
     public void reset(){
