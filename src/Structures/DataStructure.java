@@ -1,6 +1,6 @@
 package Structures;
 
-import Swing.Node;
+import Swing.Components.Node;
 
 public interface DataStructure {
     void takeStep();

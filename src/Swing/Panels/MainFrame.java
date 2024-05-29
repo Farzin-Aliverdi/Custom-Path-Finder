@@ -7,9 +7,11 @@ Description:
  */
 
 // Packages
-package Swing;
+package Swing.Panels;
 
 //Imports
+import Swing.Managers.StaticManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,6 +19,7 @@ public class MainFrame extends JFrame {
     //Variables
     MapPanel mapPanel = null;
     MenuPanel menuPanel = null;
+    ControlPanel controlPanel = null;
 
     public void initialize(){
         setLayout(new BorderLayout());
@@ -32,6 +35,11 @@ public class MainFrame extends JFrame {
         mapPanel = new MapPanel();
         mapPanel.initialize();
         add(mapPanel, BorderLayout.CENTER);
+
+        //SOUTH - CONTROL
+        controlPanel = new ControlPanel();
+        controlPanel.initialize();
+        add(controlPanel, BorderLayout.SOUTH);
 
         StaticManager.staticManager(menuPanel, mapPanel);
 

@@ -1,9 +1,12 @@
-package Swing;
+package Swing.Components;
+
+import Swing.Listeners.MenuButtonListener;
+import Swing.Managers.Runnable;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MenuButton extends JLabel implements Runnable{
+public class MenuButton extends JLabel implements Runnable {
     private MenuButtonListener menuButtonListener;
 
     public MenuButton(String name, int orientation) {

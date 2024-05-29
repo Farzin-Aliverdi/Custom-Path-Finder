@@ -1,4 +1,7 @@
-package Swing;
+package Swing.Managers;
+
+import Swing.Panels.MapPanel;
+import Swing.Panels.MenuPanel;
 
 import java.awt.*;
 
@@ -10,7 +13,9 @@ public class StaticManager {
     final public static int MAX_HEIGHT = 800;
     final public static int MAX_LENGTH = 800;
 
-    public enum ButtonState{START,END, WALL, ERASE, ERASE_ALL, PLAY_PAUSE};
+    final public static int ALG_SPEED = 1;
+
+    public enum ButtonState{START, END, WALL, ERASE, ERASE_ALL, PLAY_PAUSE};
     //BUTTON CONSTANTS
     final public static int START = 0;
     final public static int END = 1;
@@ -35,7 +40,9 @@ public class StaticManager {
     final public static Color ERASE_ALL_COLOR = DEFAULT_COLOR;
     final public static Color NODE_BORDER_COLOR = new Color(12,2, 1);
 
-    static void staticManager(MenuPanel menuPanel, MapPanel mapPanel){
+    final public static Color WALKED = new Color(80, 171, 199);
+
+    public static void staticManager(MenuPanel menuPanel, MapPanel mapPanel){
         StaticManager.menuPanel = menuPanel;
         StaticManager.mapPanel = mapPanel;
     }
@@ -68,23 +75,31 @@ public class StaticManager {
         mapPanel.eraseAll();
     }
 
-    public static void onHasStart(){
-        mapPanel.onHasStart();
+    public static void flagHasStart(){
+        mapPanel.flagHasStart();
     }
 
-    public static void onHasEnd(){
-        mapPanel.onHasEnd();
+    public static void flagHasEnd(){
+        mapPanel.flagHasEnd();
     }
 
     public static void step(){
         mapPanel.takeStep();
     }
 
-    public static boolean MAP_PANEL_DIR_ACCESS_HAS_START(){
+    public static boolean hasStart(){
         return mapPanel.getHasStart();
     }
 
-    public static boolean MAP_PANEL_DIR_ACCESS_HAS_END(){
+    public static boolean hasEnd(){
         return mapPanel.getHasEnd();
+    }
+
+    public static void removeStart(){
+        mapPanel.removeStart();
+    }
+
+    public static void removeEnd(){
+        mapPanel.removeEnd();
     }
 }

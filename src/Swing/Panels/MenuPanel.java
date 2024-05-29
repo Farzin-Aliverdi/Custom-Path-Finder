@@ -1,4 +1,9 @@
-package Swing;
+package Swing.Panels;
+
+import Swing.Listeners.MenuButtonListener;
+import Swing.Managers.Runnable;
+import Swing.Managers.StaticManager;
+import Swing.Components.MenuButton;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,6 @@
-package Swing;
+package Swing.Listeners;
+
+import Swing.Managers.StaticManager;
 
 import javax.swing.*;
 import java.awt.*;

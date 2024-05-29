@@ -1,4 +1,4 @@
-import Swing.MainFrame;
+import Swing.Panels.MainFrame;
 
 public class Main{
     public static void main(String[] args) {

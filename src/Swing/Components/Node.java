@@ -1,7 +1,8 @@
-package Swing;
+package Swing.Components;
+
+import Swing.Managers.StaticManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Node extends JLabel {
     int x, y;
@@ -41,5 +42,7 @@ public class Node extends JLabel {
         setBackground(StaticManager.DEFAULT_COLOR);
     }
 
-
+    public int getState(){
+        return state;
+    }
 }

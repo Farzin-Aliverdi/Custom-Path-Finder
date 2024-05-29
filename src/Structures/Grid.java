@@ -8,23 +8,24 @@ Description:
 
 package Structures;
 
-import Swing.MapPanel;
-import Swing.Node;
-import Swing.NodeMouseListener;
-import Swing.StaticManager;
+import Swing.Panels.MapPanel;
+import Swing.Components.Node;
+import Swing.Listeners.NodeMouseListener;
+import Swing.Managers.StaticManager;
 
 import javax.swing.*;
 
-public class Map implements DataStructure{
-    private Node[][] map;
+public class Grid implements DataStructure{
+    private Node[][] grid;
     private boolean[][] visitedMap;
     private MapPanel mapPanel;
 
     private boolean hasStart = false;
     private boolean hasEnd = false;
+    private int startX, startY, endX, endY;
 
-    public Map (MapPanel mapPanel){
-        map = new Node[StaticManager.MAP_SIZE][StaticManager.MAP_SIZE];
+    public Grid(MapPanel mapPanel){
+        grid = new Node[StaticManager.MAP_SIZE][StaticManager.MAP_SIZE];
         this.mapPanel = mapPanel;
     }
 
@@ -47,27 +48,59 @@ public class Map implements DataStructure{
                 nodeMouseListener.initialize(node);
                 node.addMouseListener(nodeMouseListener);
 
-                map[i][j] = node;
+                grid[i][j] = node;
                 mapPanel.add(node);
             }
         }
-        return map;
+        return grid;
     }
 
     public void eraseAll(){
         for (int i = 0; i < StaticManager.MAP_SIZE; i++) {
             for (int j = 0; j < StaticManager.MAP_SIZE; j++) {
-                map[i][j].reset();
+                grid[i][j].reset();
             }
         }
+        hasStart = false;
+        hasEnd = false;
     }
 
-    public boolean tickHasStart(){
-        hasStart = !hasStart;
+    public int removeEnd(){
+        int removed = 0;
+
+        for (int i = 0; i < StaticManager.MAP_SIZE; i++) {
+            for (int j = 0; j < StaticManager.MAP_SIZE; j++) {
+                if (grid[i][j].getState() == StaticManager.END){
+                    grid[i][j].reset();
+                    removed++;
+                }
+            }
+        }
+        hasEnd = false;
+        return removed;
+    }
+
+    public int removeStart(){
+        int removed = 0;
+
+        for (int i = 0; i < StaticManager.MAP_SIZE; i++) {
+            for (int j = 0; j < StaticManager.MAP_SIZE; j++) {
+                if (grid[i][j].getState() == StaticManager.START){
+                    grid[i][j].reset();
+                    removed++;
+                }
+            }
+        }
+        hasStart = false;
+        return removed;
+    }
+
+    public boolean flagHasStart(){
+        hasStart = true;
         return hasStart;
     }
-    public boolean tickHasEnd() {
-        hasEnd = !hasEnd;
+    public boolean flagHasEnd() {
+        hasEnd = true;
         return hasEnd;
     }
 
