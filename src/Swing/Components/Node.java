@@ -26,8 +26,10 @@ public class Node extends JLabel {
         this.state = StaticManager.getState();
         if (state == 0){
             setBackground(StaticManager.START_COLOR);
+            StaticManager.setStart(x, y);
         }else if (state == 1){
             setBackground(StaticManager.END_COLOR);
+            StaticManager.setEnd(x, y);
         }else if (state == 2){
             setBackground(StaticManager.WALL_COLOR);
         }else if (state == 3){

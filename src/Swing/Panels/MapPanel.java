@@ -66,4 +66,28 @@ public class MapPanel extends JPanel implements Runnable {
     public void removeEnd(){
         grid.removeEnd();
     }
+
+    public void setStart(int x, int y){
+        grid.setStart(x, y);
+    }
+
+    public void setEnd(int x, int y){
+        grid.setEnd(x, y);
+    }
+
+    public int getStartX() {
+        return grid.getStartX();
+    }
+
+    public int getStartY() {
+        return grid.getStartY();
+    }
+
+    public int getEndX() {
+        return grid.getEndX();
+    }
+
+    public int getEndY() {
+        return grid.getEndY();
+    }
 }

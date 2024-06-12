@@ -44,19 +44,8 @@ public class MenuButtonListener extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int state = StaticManager.changeState(this.state);
-        if (state == StaticManager.START){
-            button.setBackground(StaticManager.START_COLOR);
-        }else if (state == StaticManager.END){
-            button.setBackground(StaticManager.END_COLOR);
-        }else if (state == StaticManager.WALL){
-            button.setBackground(StaticManager.WALL_COLOR);
-        }else if (state == StaticManager.ERASE){
-            button.setBackground(StaticManager.ERASE_COLOR);
-        }else if (state == StaticManager.ERASE_ALL){
-            button.setBackground(StaticManager.ERASE_ALL_COLOR);
-            StaticManager.eraseAll();
-        }
+        StaticManager.resetAllMenuButtons();
+        StaticManager.changeState(this.state);
     }
 
     @Override

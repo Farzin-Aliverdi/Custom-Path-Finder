@@ -8,6 +8,6 @@ Description:
 
 package Algorithms;
 
-class Algorithm {
+abstract class Algorithm {
 
 }

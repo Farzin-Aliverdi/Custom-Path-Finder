@@ -62,7 +62,11 @@ public class Grid implements DataStructure{
             }
         }
         hasStart = false;
+        startX = -1;
+        startY = -1;
         hasEnd = false;
+        endX = -1;
+        endY = -1;
     }
 
     public int removeEnd(){
@@ -77,6 +81,8 @@ public class Grid implements DataStructure{
             }
         }
         hasEnd = false;
+        endX = -1;
+        endY = -1;
         return removed;
     }
 
@@ -92,6 +98,8 @@ public class Grid implements DataStructure{
             }
         }
         hasStart = false;
+        startX = -1;
+        startY = -1;
         return removed;
     }
 
@@ -99,6 +107,7 @@ public class Grid implements DataStructure{
         hasStart = true;
         return hasStart;
     }
+
     public boolean flagHasEnd() {
         hasEnd = true;
         return hasEnd;
@@ -107,7 +116,35 @@ public class Grid implements DataStructure{
     public boolean getHasStart(){
         return hasStart;
     }
+
     public boolean getHasEnd(){
         return hasEnd;
     }
+
+    public void setStart(int x, int y){
+        this.startX = x;
+        this.startY = y;
+    }
+
+    public void setEnd(int x, int y){
+        this.endX = x;
+        this.endY = y;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getEndX() {
+        return endX;
+    }
+
+    public int getEndY() {
+        return endY;
+    }
+
 }

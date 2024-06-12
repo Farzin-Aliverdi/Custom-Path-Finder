@@ -5,5 +5,11 @@ public class Main{
         MainFrame app = new MainFrame();
         app.initialize();
         app.run();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }
